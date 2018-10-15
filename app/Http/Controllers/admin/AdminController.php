@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use Auth;
+use DB;
 
 class AdminController extends Controller
 {
@@ -14,8 +16,12 @@ class AdminController extends Controller
     public function index()
     {
         $currentToken = $this->getActiveToken();
-        $users = User::all();
 
+        if(Auth::user()->group_id == 84235){
+            $users = User::all();
+            return view('admin.index',['users'=>$users]);
+        }
+        $users =  User::all()->where('group_id',1);
         return view('admin.index',['users'=>$users]);
     }
 
@@ -28,4 +34,6 @@ class AdminController extends Controller
     {
         return view('admin.edituser');
     }
+
+
 }

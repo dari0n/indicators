@@ -12,23 +12,27 @@
 */
 
 Route::get('/', 'session@index')->middleware('web');
-
+//Route::get('/','admin\RedisController@index');
 Auth::routes();
 
-Route::get('/home','HomeController@index')->middleware('auth','isActive','isSession');
+//Route::get('/home','HomeController@returnView')->middleware('auth','isActive','isSession');
+Route::group(['prefix'=>'home','middleware'=>['web','auth','isActive']],function(){
+    Route::get('/','HomeController@returnView')->name('home');
+    Route::get('jsonOutput','HomeController@index')->name('homeReturnJson');
+    Route::get('redisDataTable','HomeCOntroller@returnView')->name('returnIndicatorsTable');
+});
+
 Route::get('/ban','Ban\BanController@index')->middleware('web');
 Route::get('/badsession','Ban\BanController@badSession')->middleware('web');
 
 Route::group(['prefix'=>'admin','middleware'=>['web','auth','isAdmin','isActive'] ,'namespace' => 'admin'], function(){
+
     Route::get('/','AdminController@index')->name('admin');
     Route::resource('user','UserController');
     Route::get('datatable','DataTableController@index')->name('DataTable');
     Route::get('delta','DeltaController@index')->name('DataDelta');
 
-
+    Route::get('jsonOutput','RedisController@index')->name('jsonIndex');
+    Route::get('redisDataTable','RedisController@returnView')->name('returnJson');
 });
 
-Route::group(['prefix'=>'json','middleware'=>['web','auth','isActive'] ,'namespace' => 'json'], function(){
-    Route::get('jsonOutput/{osn}/{tf}','JsonController@index')->name('jsonIndex');
-
-});

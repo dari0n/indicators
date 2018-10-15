@@ -33,19 +33,31 @@
 
                 <div class="row">
                     <div class="col-lg-offset-1 col-lg-4">
+                        @if(Auth::user() && Auth::user()->group_id == 84235)
                         <label for="name">
                             <span>Group ID</span>
                         </label>
                         <input class="form-control input-lg" name="group_id" type="text" placeholder="" value="{{$user->group_id}}">
+                        @endif
                     </div>
-                    <div class="col-lg-6">
+                    @if(Auth::user() && Auth::user()->group_id == 99)
+                    <div class="col-lg-offset-1 col-lg-10">
                         <label for="name">
                             <span>Active</span>
                         </label>
                         <input class="form-control input-lg" name="is_active" type="text" placeholder="" value="{{$user->is_active}}">
 
                     </div>
+                    @endif
+                    @if(Auth::user() && Auth::user()->group_id == 84235)
+                        <div class="col-lg-6">
+                            <label for="name">
+                                <span>Active</span>
+                            </label>
+                            <input class="form-control input-lg" name="is_active" type="text" placeholder="" value="{{$user->is_active}}">
 
+                        </div>
+                    @endif
                 </div>
                 <div class="row">
                     <div class="col-lg-offset-1 col-lg-12">

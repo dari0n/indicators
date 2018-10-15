@@ -8,8 +8,8 @@ use Redis;
 
 class RedisController extends Controller
 {
-    private $startTime;
-    private $execTime;
+    public $startTime;
+    public $execTime;
 
     public function index(Request $request)
     {

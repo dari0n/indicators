@@ -45,7 +45,7 @@
 
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
-                    
+
 
                         </ul>
 
@@ -151,6 +151,11 @@
                         <i class="fa fa-dashboard"></i> <span>Delta</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{route('returnJson')}}">
+                        <i class="fa fa-dashboard"></i> <span>Indicators Redis <b style="color: #9f191f"> *Alpha</b></span>
+                    </a>
+                </li>
 
             </ul>
         </section>
@@ -198,7 +203,9 @@
             'info'        : true,
             'autoWidth'   : false
         })
+        
     })
+   @yield('script')
 </script>
 </body>
 </html>

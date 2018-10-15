@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\DataTable;
+use App\dataTable;
 class DataTableController extends Controller
 {
     //
@@ -14,6 +14,7 @@ class DataTableController extends Controller
 
     public function index()
     {
+        $class = dataTable::class;
         $getData = dataTable::getEntries();
 
         $output = $this->returnResult($getData);

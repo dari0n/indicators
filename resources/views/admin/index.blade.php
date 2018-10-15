@@ -17,18 +17,23 @@
                                 <th>id</th>
                                 <th>Username</th>
                                 <th>Email</th>
-                                <th>Group_id</th>
+                                @if(Auth::user() && Auth::user()->group_id == 84235)
+                                    <th>Group_id</th>
+                                @endif
                                 <th>Active</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($users as $user)
+
                             <tr>
                                 <td>{{$user->id}}</td>
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
+                                @if(Auth::user() && Auth::user()->group_id == 84235)
                                 <td>{{$user->group_id}}</td>
+                                @endif
                                 <td>{{$user->is_active}}</td>
                                 <td>
                                     <form style="display: inline-block" action="{{ route('user.edit', $user->id)}}" method="get">
@@ -52,7 +57,9 @@
                                 <th>id</th>
                                 <th>Username</th>
                                 <th>Email</th>
-                                <th>Group_id</th>
+                                @if(Auth::user() && Auth::user()->group_id == 84235)
+                                    <th>Group_id</th>
+                                @endif
                                 <th>Active</th>
                                 <th>Action</th>
                             </tr>
