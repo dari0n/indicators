@@ -8,33 +8,27 @@ use Redis;
 
 class RedisController extends Controller
 {
-    public $startTime;
-    public $execTime;
+
 
     public function index(Request $request)
     {
-
-        $this->startTime = microtime(true); //Start timer
-
-
-
-        $this->getDataFromRedis($request->osn,$request->tf);
-
-        $this->getAllKeys();
+        self::getDataFromRedis($request->osn,$request->tf,$request->deltaTf);
+        self::getAllKeys();
 
     }
 
-    public function UnixTimeStamp($timestamp){
+    public static function UnixTimeStamp($timestamp){
         return date('H:i:s d-m-Y',substr($timestamp,0,-3));
     }
 
-    public function getDataFromRedis($osn,$tf)
+    public static function getDataFromRedis($osn = 'ETH',$tf = '5m',$dltTF = '1d')
     {
         //Redis::flushdb();
         $kk = "*:$osn:$tf";
 
         $i=0;
         $list = Redis::keys($kk);
+
         $data = [];
         foreach ($list as $key)
         {
@@ -42,16 +36,17 @@ class RedisController extends Controller
             //Get Value of Key from Redis
             $value = Redis::get($key);
             list($osn, $alt, $open_time, $clouse_time, $clouse_price, $RSI, $ADX, $AO, $MACD, $STOCH_K,$STOCH_D,$STOH_RSI_K,$STOH_RSI_D,$TF,$BIR,$TIME) = explode(":", $value);
+
             $data['data'][$i][$a] = $osn;
             $a++;
             $data['data'][$i][$a] = $alt;
             $a++;
             $data['data'][$i][$a] = $TF;
             $a++;
-            $data['data'][$i][$a] = $open_time;
-            $a++;
-            $data['data'][$i][$a] = $clouse_time;
-            $a++;
+           // $data['data'][$i][$a] = self::UnixTimeStamp($open_time);
+           // $a++;
+           // $data['data'][$i][$a] = self::UnixTimeStamp($clouse_time);
+            //// $a++;
             $data['data'][$i][$a] = $clouse_price;
             $a++;
             $data['data'][$i][$a] = $RSI;
@@ -70,19 +65,43 @@ class RedisController extends Controller
             $a++;
             $data['data'][$i][$a] = $STOH_RSI_D;
             $a++;
-            $data['data'][$i][$a] = $TIME;
+
+            $delta = self::getDelta($osn,$alt,$dltTF);
+
+            $data['data'][$i][$a] = $delta['dlt'];
+            $a++;
+            $data['data'][$i][$a] = $delta['lastPrice'];
+            $a++;
+            $data['data'][$i][$a] = date('H:i:s d-m-Y',$TIME);
 
 
 
             $i++;
         }
 
-        $this->execTime = round(microtime(true) - $this->startTime);
+
 
         print(json_encode($data));
 
     }
-    public function getAllKeys()
+    public static function getDelta($osn = 'ETH',$alt = 'ADA',$dltTF = '1d')
+    {
+        $dltkk = "$alt:$osn:$dltTF:dlt"; //фильтр
+
+        $deltaList = Redis::get($dltkk); //получаем весь список дельта по отобранному фильтру
+        if ($deltaList){
+            list($dlt,$lastPrice) = explode(":", $deltaList);
+            $result['dlt'] = $dlt;
+            $result['lastPrice'] = $lastPrice;
+        }else{
+            $result['dlt'] = null;
+            $result['lastPrice'] = null;
+        }
+        return $result;
+
+    }
+
+    public static function getAllKeys()
     {
 
         $list = Redis::keys("*");
@@ -99,7 +118,7 @@ class RedisController extends Controller
 
     }
 
-    function tfInSelect(){
+    public static function tfInSelect(){
         $tf = [
             0 => '5m',
             1 => '15m',
@@ -118,8 +137,8 @@ class RedisController extends Controller
 
     public function returnView()
     {
-        $tf = $this->tfInSelect();
-        $keys = $this->getAllKeys();
+        $tf = self::tfInSelect();
+        $keys = self::getAllKeys();
 
         return view('admin.redisView',['keys'=>$keys,'tf'=>$tf]);
     }

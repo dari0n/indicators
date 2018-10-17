@@ -13,6 +13,7 @@
 
 
 
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -29,7 +30,7 @@
 
     <header class="main-header">
         <!-- Logo -->
-        <a href="{{route('home')}}" class="logo">
+        <a href="{{route('admin')}}" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>IND</b></span>
             <!-- logo for regular state and mobile devices -->
@@ -73,7 +74,7 @@
 
                                     <p>
                                         {{Auth::user()->name}}
-                                        <small>Dashboard</small>
+                                        <small>Administrator</small>
                                     </p>
                                 </li>
                                 <!-- Menu Body -->
@@ -132,11 +133,20 @@
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MAIN NAVIGATION</li>
+
+                @if(Auth::user() && Auth::user()->group_id == 99 or Auth::user() && Auth::user()->group_id == 84235)
+                    <li>
+                        <a href="{{route('admin')}}">
+                            <i class="fa fa-dashboard"></i> <span>Users</span>
+                        </a>
+                    </li>
+                @endif
                 <li>
-                    <a href="{{route('returnJson')}}">
+                    <a href="{{route('home')}}">
                         <i class="fa fa-dashboard"></i> <span>Indicators Redis <b style="color: #9f191f"> *Alpha</b></span>
                     </a>
                 </li>
+
 
             </ul>
         </section>
@@ -148,7 +158,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-               Dashboard
+                Control Panel
 
             </h1>
 
@@ -184,10 +194,13 @@
             'info'        : true,
             'autoWidth'   : false
         })
+        $('#Delta').DataTable({
+
+        })
+
 
     })
-
+    @yield('script')
 </script>
-@yield('script')
 </body>
 </html>

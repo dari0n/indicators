@@ -13,8 +13,6 @@ class DeltaController extends Controller
     public function index()
     {
         $getData = Delta::getEntries();
-
-
         $output = $this->returnResult($getData);
         return view('admin.delta',['entries'=>$output]);
     }

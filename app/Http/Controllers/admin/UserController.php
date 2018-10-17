@@ -78,7 +78,11 @@ class UserController extends Controller
         $user = User::find($id);
         $user->name=$request->get('name');
         $user->email=$request->get('email');
-        $user->group_id=$request->get('group_id');
+        if(!empty($request->get('group_id')))
+        {
+            $user->group_id=$request->get('group_id');
+        }
+
         $user->is_active=$request->get('is_active');
         $user->save();
         return redirect(route('admin'));

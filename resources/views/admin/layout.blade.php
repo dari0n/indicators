@@ -13,6 +13,7 @@
 
 
 
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -139,20 +140,10 @@
                     </a>
 
                 </li>
-                <li>
-                    <a href="{{route('DataTable')}}">
-                        <i class="fa fa-dashboard"></i> <span>Indicators</span>
 
-                    </a>
 
-                </li>
                 <li>
-                    <a href="{{route('DataDelta')}}">
-                        <i class="fa fa-dashboard"></i> <span>Delta</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{route('returnJson')}}">
+                    <a href="{{route('home')}}">
                         <i class="fa fa-dashboard"></i> <span>Indicators Redis <b style="color: #9f191f"> *Alpha</b></span>
                     </a>
                 </li>
@@ -203,6 +194,10 @@
             'info'        : true,
             'autoWidth'   : false
         })
+        $('#Delta').DataTable({
+
+        })
+
         
     })
    @yield('script')

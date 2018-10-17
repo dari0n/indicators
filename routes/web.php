@@ -19,7 +19,7 @@ Auth::routes();
 Route::group(['prefix'=>'home','middleware'=>['web','auth','isActive']],function(){
     Route::get('/','HomeController@returnView')->name('home');
     Route::get('jsonOutput','HomeController@index')->name('homeReturnJson');
-    Route::get('redisDataTable','HomeCOntroller@returnView')->name('returnIndicatorsTable');
+
 });
 
 Route::get('/ban','Ban\BanController@index')->middleware('web');
