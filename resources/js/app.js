@@ -5,18 +5,50 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
 
-window.Vue = require('vue');
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+function goRedis() {
+    var osn = $( "#getOSN option:selected" ).text();
+    var tf =  $( "#getTF option:selected" ).text();
+    var deltaTf = $( "#deltaTF option:selected" ).text();
+    var RedisTable =   $('#redisTable').DataTable( {
+        "ajax": 'home/jsonOutput/?osn='+osn+'&tf='+tf+'&deltaTf='+deltaTf,
+        'destroy': true,
 
-const app = new Vue({
-    el: '#app'
-});
+    } );
+    setTimeout(function () {
+        if (!RedisTable.data().any()) {
+            alert('Empty data. Please wait. Click GO button after 2 min, or choose another filter.')
+        }
+    },1500);
+    console.log('AutoReload Complete');
+}
+
+function firstLoadTable(){
+    var osn = $( "#getOSN option:selected" ).text();
+    var tf =  $( "#getTF option:selected" ).text();
+    var deltaTf = $( "#deltaTF option:selected" ).text();
+    setTimeout(function () {
+        var RedisTable =  $('#redisTable').DataTable( {
+            "ajax": 'home/jsonOutput/?osn='+osn+'&tf='+tf+'&deltaTf='+deltaTf,
+            'destroy': true,
+
+        } );
+        setTimeout(function () {
+            if (!RedisTable.data().any()) {
+                alert('Empty data. Please wait.')
+            }
+        },2000);
+        console.log('Firstload: OK');
+    },1000);
+}
+
+function reloadDataTable(){
+    var interval = $( "#getInterval option:selected" ).val();
+    setInterval(function () {
+        goRedis();
+    },interval);
+}
+firstLoadTable();
+reloadDataTable();

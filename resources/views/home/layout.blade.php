@@ -184,22 +184,44 @@
 
 <!-- page script -->
 <script>
+
+
     $(function () {
-        $('#example1').DataTable()
-        $('#example2').DataTable({
-            'paging'      : true,
-            'lengthChange': false,
-            'searching'   : false,
-            'ordering'    : true,
-            'info'        : true,
-            'autoWidth'   : false
-        })
+
+        $.fn.dataTable.ext.order['dom-checkbox'] = function  ( settings, col )
+        {
+            return this.api().column( col, {order:'index'} ).nodes().map( function ( td, i ) {
+                return $('input', td).prop('checked') ? '1' : '0';
+            } );
+        }
+
+
         $('#Delta').DataTable({
 
+            "columns": [
+                null,
+                null,
+                null,
+                { "orderDataType": "dom-text-numeric" },
+                { "orderDataType": "dom-text-numeric" },
+                { "orderDataType": "dom-text-numeric" },
+                { "orderDataType": "dom-text-numeric" },
+                { "orderDataType": "dom-text-numeric" },
+                { "orderDataType": "dom-text-numeric" },
+                { "orderDataType": "dom-text-numeric" },
+                { "orderDataType": "dom-text-numeric" },
+                { "orderDataType": "dom-text-numeric" },
+                { "orderDataType": "dom-text-numeric" },
+                { "orderDataType": "dom-text-numeric" }
+
+
+            ]
         })
+
 
 
     })
+
     @yield('script')
 </script>
 </body>

@@ -33,6 +33,7 @@ mix.scripts([
     'resources/js/fastclick.js',
     'resources/js/adminlte.min.js',
     'resources/js/demo.js',
+    'resources/js/app.js',
 
 ],'public/js/admin.js');
 
