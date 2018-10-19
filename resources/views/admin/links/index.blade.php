@@ -19,9 +19,18 @@
                             <thead>
                             <tr>
                                 <th>ALT Name</th>
-                                <th>BIR NAME</th>
-                                <th>Link</th>
+                                <th>Bitcointalk</th>
+                                <th>Twitter</th>
+                                <th>Calendar</th>
+                                <th>CoinMarketCap</th>
+                                <th>ALT BTC</th>
+                                <th>ALT BNB</th>
+                                <th>ALT ETH</th>
+                                <th>ALT USDT</th>
                                 <th>Action</th>
+
+
+
                             </tr>
                             </thead>
                             <tbody>
@@ -29,9 +38,15 @@
 
                                 <tr>
 
-                                    <td><a href="{{$link->$link}}">{{$link->alt_name}}</a></td>
-                                    <td><a href="{{$link->link}}">{{$link->bir_name}}</a></td>
-                                    <td>{{$link->link}}</td>
+                                    <td><a href="{{ route('links.edit', $link->id)}}">{{$link->alt_name}}</a></td>
+                                    <td><a href="{{$link->bitcointalk}}">{{$link->bitcointalk}}</a></td>
+                                    <td><a href="{{$link->bitcointalk}}">{{$link->twitter}}</a></td>
+                                    <td><a href="{{$link->bitcointalk}}">{{$link->calendar}}</a></td>
+                                    <td><a href="{{$link->bitcointalk}}">{{$link->coinmarketcap}}</a></td>
+                                    <td><a href="{{$link->bitcointalk}}">{{$link->btc}}</a></td>
+                                    <td><a href="{{$link->bitcointalk}}">{{$link->bnb}}</a></td>
+                                    <td><a href="{{$link->bitcointalk}}">{{$link->eth}}</a></td>
+                                    <td><a href="{{$link->bitcointalk}}">{{$link->usdt}}</a></td>
                                     <td>
                                         <form style="display: inline-block" action="{{ route('links.edit', $link->id)}}" method="get">
 
@@ -52,8 +67,14 @@
                             <tfoot>
                             <tr>
                                 <th>ALT Name</th>
-                                <th>BIR NAME</th>
-                                <th>Link</th>
+                                <th>Bitcointalk</th>
+                                <th>Twitter</th>
+                                <th>Calendar</th>
+                                <th>CoinMarketCap</th>
+                                <th>ALT BTC</th>
+                                <th>ALT BNB</th>
+                                <th>ALT ETH</th>
+                                <th>ALT USDT</th>
                                 <th>Action</th>
                             </tr>
                             </tfoot>

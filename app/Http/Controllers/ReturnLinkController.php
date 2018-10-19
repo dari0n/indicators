@@ -9,27 +9,20 @@ class ReturnLinkController extends Controller
 {
     public function index(Request $request)
     {
+
         if($request->alt_name) {
-            $links = ReturnLink::where('alt_name', $request->alt_name)->get();
-            $this->parseLinks($links->toArray(),$request->alt_name);
+            $links = ReturnLink::where('alt_name', $request->alt_name)->first();
+            $data = $links->toArray();
+            return view('admin.links.ajax',['links' => $data]);
         }
         return null;
     }
 
     private function parseLinks($links,$rq)
     {
-        if ($links)
-        {
-
-            foreach ($links as $link)
-            {
-
-                print('<a type="button" href="'.$link['link'].'" class="btn btn-block btn-primary btn-lg" target="_blank">'.$link['bir_name'].'</a>');
-            }
-        }
-        return null;
-            //print('<a href="'.$link['link'].'" target="_blank">'.$link['bir_name'].'</a><br/>');
 
 
+        //'<a type="button" href="'.$link['link'].'" class="btn btn-block btn-primary btn-lg" target="_blank">'.$link['bir_name'].'</a>'
+        //print('<a href="'.$link['link'].'" target="_blank">'.$link['bir_name'].'</a><br/>');
     }
 }

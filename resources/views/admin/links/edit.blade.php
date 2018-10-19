@@ -15,31 +15,64 @@
                             <div class="form-group-lg">
                                 <div class="row">
 
-                                    <div class="col-lg-offset-1 col-lg-4">
-
-
+                                    <div class="col-lg-offset-1 col-lg-10">
                                         <label for="alt_name">
                                             <span>Alt Name</span>
                                         </label>
                                         <input class="form-control input-lg" name="alt_name" type="text" placeholder="" value="{{$link->alt_name}}">
                                     </div>
-                                    <div class="col-lg-6">
-                                        <label for="bir_name">
-                                            <span>Bir Name</span>
-                                        </label>
-                                        <input class="form-control input-lg" name="bir_name" type="text" placeholder="" value="{{$link->bir_name}}">
-                                    </div>
-                                </div>
 
-                                <div class="row">
+                                    <div class="col-lg-offset-1 col-lg-10">
+                                        <label for="bir_name">
+                                            <span>BitCoinTalk</span>
+                                        </label>
+                                        <input class="form-control input-lg" name="bitcointalk" type="text" placeholder="" value="{{$link->bitcointalk}}">
+                                    </div>
                                     <div class="col-lg-offset-1 col-lg-10">
                                             <label for="link">
-                                                <span>Href</span>
+                                                <span>Twitter</span>
                                             </label>
-                                            <input class="form-control input-lg" name="link" type="text" placeholder="" value="{{$link->link}}">
+                                            <input class="form-control input-lg" name="twitter" type="text" placeholder="" value="{{$link->twitter}}">
+                                    </div>
 
+                                    <div class="col-lg-offset-1 col-lg-10">
+                                        <label for="link">
+                                            <span>Calendar</span>
+                                        </label>
+                                        <input class="form-control input-lg" name="calendar" type="text" placeholder="" value="{{$link->calendar}}">
+                                    </div>
+                                    <div class="col-lg-offset-1 col-lg-10">
+                                        <label for="link">
+                                            <span>CoinMarketCap</span>
+                                        </label>
+                                        <input class="form-control input-lg" name="coinmarketcap" type="text" placeholder="" value="{{$link->coinmarketcap}}">
+                                    </div>
+                                    <div class="col-lg-offset-1 col-lg-10">
+                                        <label for="link">
+                                            <span>{{$link->alt_name}} BTC</span>
+                                        </label>
+                                        <input class="form-control input-lg" name="btc" type="text" placeholder="" value="{{$link->btc}}">
+                                    </div>
+                                    <div class="col-lg-offset-1 col-lg-10">
+                                        <label for="link">
+                                            <span>{{$link->alt_name}} BNB</span>
+                                        </label>
+                                        <input class="form-control input-lg" name="bnb" type="text" placeholder="" value="{{$link->bnb}}">
+                                    </div>
+                                    <div class="col-lg-offset-1 col-lg-10">
+                                        <label for="link">
+                                            <span>{{$link->alt_name}} ETH</span>
+                                        </label>
+                                        <input class="form-control input-lg" name="eth" type="text" placeholder="" value="{{$link->eth}}">
+                                    </div>
+                                    <div class="col-lg-offset-1 col-lg-10">
+                                        <label for="link">
+                                            <span>{{$link->alt_name}} USDT</span>
+                                        </label>
+                                        <input class="form-control input-lg" name="usdt" type="text" placeholder="" value="{{$link->usdt}}">
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="col-lg-offset-1 col-lg-12">
                                         <div style="margin-top: 20px; margin-bottom: 20px" class="ddq">

@@ -137,7 +137,7 @@
     $(function () {
 
 
-    setTimeout(function () {
+    setInterval(function () {
         var td = $("#redisTable tr td:nth-child(2)");
         console.log('Alt for links init');
         td.click(function () {

@@ -40,8 +40,15 @@ class LinksController extends Controller
         ]);
         $link = Link::find($id);
         $link->alt_name=$request->get('alt_name');
-        $link->bir_name=$request->get('bir_name');
-        $link->link=$request->get('link');
+        $link->bitcointalk=$request->get('bitcointalk');
+        $link->twitter=$request->get('twitter');
+        $link->calendar=$request->get('calendar');
+        $link->coinmarketcap=$request->get('coinmarketcap');
+        $link->btc=$request->get('btc');
+        $link->bnb=$request->get('bnb');
+        $link->eth=$request->get('eth');
+        $link->usdt=$request->get('usdt');
+
         $link->save();
         return redirect(route('links.index'));
     }
@@ -49,9 +56,15 @@ class LinksController extends Controller
     public function store(Request $request)
     {
         $link = new Link();
-        $link->alt_name=$request->input('alt_name');
-        $link->bir_name=$request->input('bir_name');
-        $link->link=$request->input('link');
+        $link->alt_name=$request->get('alt_name');
+        $link->bitcointalk=$request->get('bitcointalk');
+        $link->twitter=$request->get('twitter');
+        $link->calendar=$request->get('calendar');
+        $link->coinmarketcap=$request->get('coinmarketcap');
+        $link->btc=$request->get('btc');
+        $link->bnb=$request->get('bnb');
+        $link->eth=$request->get('eth');
+        $link->usdt=$request->get('usdt');
         $link->save();
         return redirect(route('links.index'));
 

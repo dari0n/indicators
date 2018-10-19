@@ -17,9 +17,14 @@ class Links extends Migration
         Schema::create('links', function (Blueprint $table) {
             $table->increments('id');
             $table->string('alt_name'); //имя пльта по которому делаем отбор
-            $table->string('bir_name'); //текст в ссылке
-            $table->string('link'); //ссылка
-
+            $table->string('bitcointalk'); //текст в ссылке
+            $table->string('twitter'); //ссылка
+            $table->string('calendar'); //ссылка
+            $table->string('coinmarketcap'); //ссылка
+            $table->string('btc'); //ссылка
+            $table->string('bnb'); //ссылка
+            $table->string('eth'); //ссылка
+            $table->string('usdt'); //ссылка
             $table->timestamps();
         });
     }
