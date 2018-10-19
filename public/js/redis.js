@@ -1,1 +1,36 @@
-function goRedis(){var e=$("#getOSN option:selected").text(),t=$("#getTF option:selected").text(),o=$("#deltaTF option:selected").text(),a=$("#redisTable").DataTable({stateSave:!0,ajax:"home/jsonOutput/?osn="+e+"&tf="+t+"&deltaTf="+o});setTimeout(function(){a.data().any()||alert("Empty data. Please wait. Click GO button after 2 min, or choose another filter.")},1500),console.log("AutoReload Complete"),setInterval(function(){a.ajax.reload(null,!1),console.log("dataReloaded")},3e3)}goRedis();
+
+function goRedis() {
+    
+    var RedisTable =   $('#redisTable').DataTable( {
+        stateSave:true,
+        "ajax": {
+            'url':'home/jsonOutput/',
+            "data": function(data){
+                data.osn = $( "#getOSN option:selected" ).text();
+                data.tf =  $( "#getTF option:selected" ).text();
+                data.deltaTf = $( "#deltaTF option:selected" ).text();
+            },
+        }
+
+
+    } );
+    setTimeout(function () {
+        if (!RedisTable.data().any()) {
+
+        }
+    },1500);
+
+    console.log('AutoReload Complete');
+
+    setInterval( function () {
+        RedisTable.ajax.reload( null, false ); // user paging is not reset on reload
+        console.log('dataReloaded');
+    }, 30000 );
+
+    $("#goRedisButton").click(function () {
+       RedisTable.destroy();
+       goRedis();
+    });
+}
+
+goRedis();

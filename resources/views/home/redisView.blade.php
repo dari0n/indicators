@@ -63,7 +63,7 @@
 
                     <div class="col-lg-1 col-xs-4">
                         <div class="col">
-                            <button type="button" style="margin-top: 23px" id="goRedisButton" onclick="goRedis()" class="btn btn-block btn-success">Go</button>
+                            <button type="button" style="margin-top: 23px" id="goRedisButton" class="btn btn-block btn-success">Go</button>
                         </div>
                     </div>
                 </div>
@@ -135,6 +135,7 @@
 @section('script')
 <script>
     $(function () {
+
 
 
     setInterval(function () {
