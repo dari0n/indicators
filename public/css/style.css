@@ -31,3 +31,13 @@ li{list-style:none}
   font-size: 25px;
   color: #5cd08d;
 }
+
+#linksTable {
+  font-size: 12px;
+}
+#linksTable td{
+  font-size: 8px;
+}
+#linksTable td:first-child{
+  font-size: 18px;
+}

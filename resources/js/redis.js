@@ -4,8 +4,9 @@ function goRedis() {
     var tf =  $( "#getTF option:selected" ).text();
     var deltaTf = $( "#deltaTF option:selected" ).text();
     var RedisTable =   $('#redisTable').DataTable( {
+        stateSave:true,
         "ajax": 'home/jsonOutput/?osn='+osn+'&tf='+tf+'&deltaTf='+deltaTf,
-        'destroy': true,
+
 
     } );
     setTimeout(function () {
@@ -14,32 +15,10 @@ function goRedis() {
         }
     },1500);
     console.log('AutoReload Complete');
+    setInterval( function () {
+        RedisTable.ajax.reload( null, false ); // user paging is not reset on reload
+        console.log('dataReloaded');
+    }, 3000 );
 }
 
-function firstLoadTable(){
-    var osn = $( "#getOSN option:selected" ).text();
-    var tf =  $( "#getTF option:selected" ).text();
-    var deltaTf = $( "#deltaTF option:selected" ).text();
-    setTimeout(function () {
-        var RedisTable =  $('#redisTable').DataTable( {
-            "ajax": 'home/jsonOutput/?osn='+osn+'&tf='+tf+'&deltaTf='+deltaTf,
-            'destroy': true,
-
-        } );
-        setTimeout(function () {
-            if (!RedisTable.data().any()) {
-                alert('Empty data. Please wait.')
-            }
-        },2000);
-        console.log('Firstload: OK');
-    },1000);
-}
-
-function reloadDataTable(){
-    var interval = $( "#getInterval option:selected" ).val();
-    setInterval(function () {
-        goRedis();
-    },interval);
-}
-firstLoadTable();
-reloadDataTable();
+goRedis();

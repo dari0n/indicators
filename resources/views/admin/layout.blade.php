@@ -141,7 +141,7 @@
                     </a>
 
                 </li>
-                @if(Auth::user() && Auth::user()->group_id == 84235)
+
                 <li>
                     <a href="{{route('links.index')}}">
                         <i class="fa fa-dashboard"></i> <span>Links</span>
@@ -149,7 +149,7 @@
                     </a>
 
                 </li>
-                @endif
+
                 <li>
                     <a href="{{route('home')}}">
                         <i class="fa fa-dashboard"></i> <span>Indicators Redis <b style="color: #9f191f"> *Alpha</b></span>

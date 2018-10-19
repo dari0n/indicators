@@ -141,7 +141,7 @@
                         </a>
                     </li>
                 @endif
-                @if(Auth::user() && Auth::user()->group_id == 84235)
+                @if(Auth::user() && Auth::user()->group_id == 99 or Auth::user() && Auth::user()->group_id == 84235)
                     <li>
                         <a href="{{route('links.index')}}">
                             <i class="fa fa-dashboard"></i> <span>Links</span>
@@ -226,7 +226,7 @@
 
 
         $('#Delta').DataTable({
-
+            stateSave: true,
             "columns": [
                 null,
                 null,

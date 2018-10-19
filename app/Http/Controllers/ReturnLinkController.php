@@ -12,8 +12,11 @@ class ReturnLinkController extends Controller
 
         if($request->alt_name) {
             $links = ReturnLink::where('alt_name', $request->alt_name)->first();
-            $data = $links->toArray();
-            return view('admin.links.ajax',['links' => $data]);
+            if($links){
+                $data = $links->toArray();
+                return view('admin.links.ajax',['links' => $data]);
+            }
+
         }
         return null;
     }
