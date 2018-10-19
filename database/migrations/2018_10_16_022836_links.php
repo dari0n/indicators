@@ -14,6 +14,14 @@ class Links extends Migration
     public function up()
     {
         //
+        Schema::create('links', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('alt_name'); //имя пльта по которому делаем отбор
+            $table->string('bir_name'); //текст в ссылке
+            $table->string('link'); //ссылка
+
+            $table->timestamps();
+        });
     }
 
     /**

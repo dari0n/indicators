@@ -141,6 +141,15 @@
                         </a>
                     </li>
                 @endif
+                @if(Auth::user() && Auth::user()->group_id == 84235)
+                    <li>
+                        <a href="{{route('links.index')}}">
+                            <i class="fa fa-dashboard"></i> <span>Links</span>
+
+                        </a>
+
+                    </li>
+                @endif
                 <li>
                     <a href="{{route('home')}}">
                         <i class="fa fa-dashboard"></i> <span>Indicators Redis <b style="color: #9f191f"> *Alpha</b></span>
@@ -178,9 +187,29 @@
     <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
+<!-- Links Modal-->
+<div class="modal" id="modalLinks" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Links</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="linksContent">
 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ./Links Modal-->
 <!-- Scripts -->
 <script src="{{ url('js/admin.js') }}"></script>
+<script src="{{ url('js/redis.js') }}"></script>
 
 <!-- page script -->
 <script>
@@ -222,7 +251,8 @@
 
     })
 
-    @yield('script')
+
 </script>
+@yield('script')
 </body>
 </html>

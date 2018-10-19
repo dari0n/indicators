@@ -7,4 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class ReturnLink extends Model
 {
     //
+    protected $table = "links";
+
 }

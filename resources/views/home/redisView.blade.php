@@ -133,7 +133,41 @@
     </div>
 @endsection
 @section('script')
+<script>
+    $(function () {
 
+
+    setTimeout(function () {
+        var td = $("#redisTable tr td:nth-child(2)");
+        console.log('Alt for links init');
+        td.click(function () {
+            $.ajax({
+
+                url: "home/returnLinks?alt_name="+$(this).html(),
+                cache: false
+            })
+                .done(function( msg ) {
+                    if(!msg){
+                        alert('Sorry, links for this element is empty((');
+                    }else{
+
+                        $("#linksContent").html(msg);
+                        $("#modalLinks").modal('show');
+                    }
+                });
+        })
+    },2000)
+
+
+
+
+    })
+    /*
+    * $.each(data, function(i, item) {
+        alert(data[i].PageName);
+      });​
+    * */
+</script>
 
 
 @endsection

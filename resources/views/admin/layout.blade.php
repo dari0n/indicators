@@ -9,6 +9,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" href="{{ url('css/admin.css') }}">
+    <link rel="stylesheet" href="{{ url('css/style.css') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
@@ -140,8 +141,15 @@
                     </a>
 
                 </li>
+                @if(Auth::user() && Auth::user()->group_id == 84235)
+                <li>
+                    <a href="{{route('links.index')}}">
+                        <i class="fa fa-dashboard"></i> <span>Links</span>
 
+                    </a>
 
+                </li>
+                @endif
                 <li>
                     <a href="{{route('home')}}">
                         <i class="fa fa-dashboard"></i> <span>Indicators Redis <b style="color: #9f191f"> *Alpha</b></span>
@@ -183,24 +191,8 @@
 <script src="{{ url('js/admin.js') }}"></script>
 
 <!-- page script -->
-<script>
-    $(function () {
-        $('#example1').DataTable()
-        $('#example2').DataTable({
-            'paging'      : true,
-            'lengthChange': false,
-            'searching'   : false,
-            'ordering'    : true,
-            'info'        : true,
-            'autoWidth'   : false
-        })
-        $('#Delta').DataTable({
 
-        })
 
-        
-    })
-   @yield('script')
-</script>
+
 </body>
 </html>

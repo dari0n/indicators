@@ -19,7 +19,8 @@ mix.styles([
   'resources/css/ionicons.min.css',
   'resources/css/dataTables.bootstrap.min.css',
   'resources/css/AdminLTE.min.css',
-  'resources/css/_all-skins.min.css'
+  'resources/css/_all-skins.min.css',
+  'resources/css/style.css'
     ]
 
 ,'public/css/admin.css');
@@ -36,6 +37,11 @@ mix.scripts([
     'resources/js/app.js',
 
 ],'public/js/admin.js');
+
+mix.scripts([
+    'resources/js/redis.js',
+
+],'public/js/redis.js');
 
 
 

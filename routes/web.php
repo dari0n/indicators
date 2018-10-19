@@ -19,6 +19,7 @@ Auth::routes();
 Route::group(['prefix'=>'home','middleware'=>['web','auth','isActive']],function(){
     Route::get('/','HomeController@returnView')->name('home');
     Route::get('jsonOutput','HomeController@index')->name('homeReturnJson');
+    Route::get('returnLinks','ReturnLinkController@index')->name('returnLinks');
 
 });
 
@@ -34,5 +35,9 @@ Route::group(['prefix'=>'admin','middleware'=>['web','auth','isAdmin','isActive'
 
     Route::get('jsonOutput','RedisController@index')->name('jsonIndex');
     Route::get('redisDataTable','RedisController@returnView')->name('returnJson');
+
+    Route::resource('links','LinksController');
+
+
 });
 
